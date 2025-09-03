@@ -1,0 +1,19 @@
+# Carpetas de configuración de VS Code
+.vscode/
+
+#Cualquier archivo de prueba
+prueba.*
+
+# Archivos de compilación/salida en C++
+*.exe
+*.out
+*.o
+cpp/output/
+
+# Archivos de Python cache
+__pycache__/
+*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
