@@ -26,19 +26,18 @@ document.getElementById("btnAgregar").addEventListener("click", function () {
     const intareas = document.getElementById("inputTarea")
     const list = document.getElementById("listaTareas")
     const item = document.createElement("li")
-    const contenedor = document.createElement("div")
+    const btn = document.createElement("button")
     const valor = intareas.value
     if(valor.trim() === "") return
-    contenedor.innerText = valor
-    contenedor.className = "text-center"
-    const btn = document.createElement("button")
-    btn.className = "bg-sky-400 px-4 py-2 text-white rounded hover:bg-blue-800"
-    btn.innerText = "Eliminar tarea"
+
+    btn.innerText = "x"
+    btn.className = "bg-emerald-500 px-4 py-2 rounded-full text-white text-center rounded hover:bg-blue-800"
     btn.addEventListener("click", function () {
         item.remove()
     })
-    item.className = "bg-violet-400 flex justify-between rounded"
-    item.appendChild(contenedor)
+
+    item.innerText = valor
+    item.className = "bg-violet-400 px-5 py-1 flex justify-between items-center rounded-full"
     item.appendChild(btn)
     list.appendChild(item)
     intareas.value = ""
