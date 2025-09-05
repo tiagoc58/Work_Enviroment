@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body style = "font-family: 'Ubuntu Mono', monospace;" class = "bg-[url(util/background.jpg)] bg-fixed p-5 px-30">
+    <div class = "bg-[#fbc491] px-8 p-5 flex justify-between rounded-lg shadow-lg">
+        <div>
+            <strong class = "text-[60px]">Santiago Corredor Jaramillo</strong>
+            <div class = "text-[20px]">Desarrollador Web Full Stack</div>
+        </div>
+        <img class="h-24 w-24 rounded-full" src="util/pfp.jpg" alt="Spiderman de Andrew Garfield, el mejor spiderman (soy yo)">
+    </div>
+
+    <!-- PROYECTOS -->
+    <div class = "text-[30px] mt-12 mb-3 font-bold">Proyectos</div>
+
+    <!-- GRID -->
+    <div class = "grid grid-cols-2 gap-10">
+
+        <!-- row 1 column 1 -->
+        <div class = "bg-[#a76f97] rounded-lg shadow-lg p-5 flex justify-start transition delay-150 duration-150 ease-in-out hover:rotate-45 hover:scale-110 hover:bg-[#fbc491]">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/hive.jpeg" alt="yellow amog us">
+            <div class="bg-[#ccc4e9] rounded-lg px-2 py-1">
+                <strong class = "text-[20px]">Chat hive</strong>
+                <div>Chat virtual con bases de datos</div>
+            </div>
+        </div>
+
+        <!-- row 1 column 2 -->
+        <div class = "bg-[#f5cbcb] rounded-lg shadow-lg p-5 flex justify-center">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/logo-isimo.png" alt="yellow amog us">      
+            <div class="bg-[#6c74b4] rounded-lg px-2 py-1">
+                <strong class = "text-[20px]">Cajas supermercado</strong>
+                <div>Programa de simulación con colas de prioridad</div>
+            </div>
+        </div>
+
+        <!-- row 2 column 1 -->
+        <div class = "bg-[#c5aed6] rounded-lg shadow-lg p-5 flex justify-end">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/calculadora_reloaded.jpg" alt="yellow amog us">
+            <div class="bg-[#6c74b4] rounded-lg px-2 py-1 text-right">
+                <strong class = "text-[20px]">Calculadora IEEE</strong>
+                <div>Aplicación de calculadora-IEEE para celular</div>
+            </div>
+        </div>
+
+        <!-- row 2 column 2 -->
+        <div class = "bg-[#a08ec8] rounded-lg shadow-lg p-5 flex justify-between">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/letra_p.png" alt="yellow amog us">
+            <div class="bg-[#ccc4e9] rounded-lg px-2 py-1 text-right">
+                <strong class = "text-[20px]">Parqueadero JDBC</strong>
+                <div>Control de parqueadero con base de datos JDBC</div>
+            </div>
+        </div>
+
+        <!-- row 3 column 1 -->
+        <div class = "bg-[#4b5497] rounded-lg shadow-lg p-5 flex justify-evenly">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/nu_logo_mejorado.png" alt="yellow amog us">
+            <div class="bg-[#ccc4e9] rounded-lg px-2 py-1">
+                <strong class = "text-[20px]">Chanty-Plata</strong>
+                <div>Programa para manejar distintas cuentas de banco</div>
+            </div>
+        </div>
+        
+        <!-- row 3 column 2 -->
+        <div class = "bg-[#dab9d6] rounded-lg shadow-lg p-5 flex justify-around">
+            <img class = "h-15 w-15 rounded-full mr-3" src="util/tetris_logo.jpg" alt="yellow amog us">
+            <div class="bg-[#6c74b4] rounded-lg px-2 py-1">
+                <strong class = "text-[20px]">Tetris</strong>
+                <div>Juego de tetris realizado en assembler</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div id = "contacto" class = "bg-[#c25e5a] mt-30 px-8 p-5 rounded-t-lg shadow-lg text-center">
+        <div class = "text-[28px] font-bold">Contacto</div>
+        <div class = "text-[16px]">📨 santiagocj@ufps.edu.co</div>
+        <div class = "text-[16px]">📌 Cúcuta, Colombia</div>
+        <div class = "text-[16px]">📱 (+57) 304-591-8807</div>
+        <div class = "mb-2 mt-4">
+            <button id = "Linkedin" class = "bg-[#ffebaf] h-10 w-25 rounded-full hover:bg-[#6c74b4] focus:outline-2 focus:outline-offset-2 focus:outline-[#6c74b4] active:bg-[#4b5497]">Linkedin</button>
+            <button class = "bg-[#ffebaf] h-10 w-25 rounded-full hover:bg-[#6c74b4] focus:outline-2 focus:outline-offset-2 focus:outline-[#6c74b4] active:bg-[#4b5497]">GitHub</button>
+            <button class = "bg-[#ffebaf] h-10 w-25 rounded-full hover:bg-[#6c74b4] focus:outline-2 focus:outline-offset-2 focus:outline-[#6c74b4] active:bg-[#4b5497]">Twitter</button>
+        </div>
+    </div>
+    <script>
+        const contactBoc = document.getElementById("contacto")
+
+        const inputEl = document.createElement("input")
+        inputEl.className = "bg-[#68a4f1] rounded-full px-2 py-1 transition duration-1000 ease-in-out hover:bg-[#4d77af] hover:scale-110"
+
+        const buttonEl = document.getElementById("Linkedin")
+        buttonEl.addEventListener('click', () => {
+            alert(inputEl.value)
+        })
+
+        contactBoc.appendChild(inputEl)
+    </script>
+</body>
+</html>

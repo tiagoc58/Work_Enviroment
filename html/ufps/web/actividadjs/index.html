@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafíos JavaScript - Manipulación del DOM</title>
+    <script defer src="script.js"></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-5">
+    
+    <h1 class="text-3xl font-bold mb-5">Manipulación del DOM - Desafíos</h1>
+    
+    <!-- Desafío 1: Cambiar Texto -->
+    <section class="bg-white p-5 rounded-lg shadow-md w-full max-w-md mb-5">
+        <p id="texto" class="text-lg text-gray-700">Este texto debe cambiar.</p>
+        <button id="btnTexto" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Cambiar Texto</button>
+    </section>
+
+    <!-- Desafío 2: Cambiar Estilos -->
+    <section class="bg-white p-5 rounded-lg shadow-md w-full max-w-md mb-5">
+        <h2 class="text-xl font-semibold">Cambiar Color de Fondo</h2>
+        <button id="btnColor" class="mt-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Cambiar Color</button>
+    </section>
+
+    <!-- Desafío 3: Lista Dinámica -->
+    <section class="bg-white p-5 rounded-lg shadow-md w-full max-w-md mb-5">
+        <h2 class="text-xl font-semibold">Lista Dinámica</h2>
+        <input id="inputTarea" type="text" placeholder="Escribe una tarea" class="border p-2 rounded w-full mt-2">
+        <button id="btnAgregar" class="mt-2 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-700">Agregar Tarea</button>
+        <ul id="listaTareas" class="mt-3 space-y-2"></ul>
+    </section>
+
+    <!-- Desafío 4: Consumo de API -->
+    <section class="bg-white p-5 rounded-lg shadow-md w-full max-w-md mb-5">
+        <h2 class="text-xl font-semibold">Cargar Usuarios Aleatorios</h2>
+        <button id="btnUsuarios" class="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">Cargar Usuarios</button>
+        <ul id="listaUsuarios" class="mt-3 space-y-2"></ul>
+    </section>
+
+</body>
+</html>
