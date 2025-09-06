@@ -32,22 +32,12 @@ ll gcd(ll a, ll b){while(b){a%=b; swap(a,b);} return a;} ll lcm(ll a,ll b){retur
 int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {return 63-__builtin_clzll(x);}
 
 void solve(){
-    int n, x; cin >> n >> x;
-    int lf = 0, rg = n+1;
-    vec(char) v(n); read(v)
-    x--;
-    for(int i = x-1; i >= 0 && lf == 0; --i) if(v[i] == '#') lf = i+1;
-    for(int i = x+1; i < n && rg == 0; ++i) if(v[i] == '#') rg = i+1;
-    x++;
-    if(x == 1 || x == n || (lf==0 && rg==n+1)) {syso(1) return;} //(lf==0 && rg==0)
-    if(lf > n-rg+1) rg = x+1;
-    else lf = x-1;
-    syso(min(lf+1,n-rg+2));
+    
 }
 
 int main(){
     Sonic
-    tests(t)
+    // tests(t)
         solve();
     return 0;
 }
