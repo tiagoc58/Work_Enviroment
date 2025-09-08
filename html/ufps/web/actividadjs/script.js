@@ -1,62 +1,96 @@
 // 🟢 DESAFÍO 1: Cambiar el texto de un párrafo al hacer clic en el botón
 document.getElementById("btnTexto").addEventListener("click", function () {
-    // TODO: Seleccionar el párrafo con id "texto" y cambiar su contenido a "¡Texto cambiado!"
     const btn = document.getElementById("texto")
     btn.innerText = "¡Texto cambiado!"
 });
 
 // 🟢 DESAFÍO 2: Alternar el color de fondo de la página al hacer clic
 document.getElementById("btnColor").addEventListener("click", function () {
-    // Lectura recomendada: https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList/toggle
-    // TODO: Usar classList.toggle() para alternar un fondo diferente en el body
     const body = document.querySelector("body")
     body.classList.toggle("bg-gray-100")
     body.classList.toggle("bg-[#00afc7]")
-    //body.classList.toggle("bg-blue")
-    //body.style.background = "#2ebd8bff"
-    //body.className = "bg-[#00afc7] flex flex-col items-center justify-center min-h-screen p-5"
+    //body.style.background = "#350080ff"
 });
 
 // 🟢 DESAFÍO 3: Agregar tareas dinámicamente a la lista
+let tareaId = 1
 document.getElementById("btnAgregar").addEventListener("click", function () {
-    // TODO: Leer el valor del input "inputTarea"
-    // TODO: Crear un nuevo <li> y agregarle el texto ingresado
-    // TODO: Agregar un botón dentro del <li> para eliminar la tarea
-    // TODO: Agregar el <li> a la lista "listaTareas"
     const intareas = document.getElementById("inputTarea")
+    const valor = intareas.value
+    if(valor.trim() === "") return  
+    crearTarea(tareaId, valor)
+    localStorage.setItem(tareaId, valor)
+    intareas.value = ""
+    tareaId++
+});
+
+function crearTarea(id, contenido){
     const list = document.getElementById("listaTareas")
     const item = document.createElement("li")
     const btn = document.createElement("button")
-    const valor = intareas.value
-    if(valor.trim() === "") return
-
-    btn.innerText = "x"
-    btn.className = "bg-emerald-500 px-4 py-2 rounded-full text-white text-center rounded hover:bg-blue-800"
+    btn.innerText = "X"
+    const myId = id
+    btn.className = "bg-emerald-500 h-10 w-10 rounded-full text-[#350080] text-center font-bold rounded hover:bg-blue-800"
     btn.addEventListener("click", function () {
         item.remove()
+        localStorage.removeItem(myId)
     })
 
-    item.innerText = valor
+    item.innerText = contenido
     item.className = "bg-violet-400 px-5 py-1 flex justify-between items-center rounded-full"
     item.appendChild(btn)
     list.appendChild(item)
-    intareas.value = ""
-});
+}
 
 
 // 🟢 DESAFÍO 4: Cargar datos de usuarios desde una API pública
-document.getElementById("btnUsuarios").addEventListener("click", function () {
-    // Lectura recomendada: https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
-    // TODO: Hacer una petición a "https://jsonplaceholder.typicode.com/users"
-    // TODO: Mostrar solo los nombres y correos electrónicos en "listaUsuarios"
-    // TODO: Si la petición falla, mostrar un mensaje de error en consola
-});
-
-// 🟢 DESAFÍO 5 (Extra): Guardar y cargar la lista de tareas usando localStorage
-// Lectura recomendada: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
-// TODO: Guardar las tareas en localStorage cada vez que se agregue o elimine una
-// TODO: Cargar las tareas desde localStorage cuando la página se recargue
+//Lo que está comentado es el encargado de listar de manera aleatoria
+//lo que no filtra los usuarios de acuerdo a lo indicado en el desafío 6
 
 // 🟢 DESAFÍO 6 (Extra): Filtrar usuarios con correos que contengan "biz"
-// Lectura recomendada: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-// TODO: Modificar el código del desafío 4 para mostrar solo usuarios con "@biz" en su email
+//funcion para filtrar
+function filtraje(persona){
+    let size = persona.email.length
+    return persona.email[size-1] == "z" && persona.email[size-2] == "i" && persona.email[size-3] == "b"
+}
+document.getElementById("btnUsuarios").addEventListener("click", function () {
+    // let num = Math.floor(Math.random() *10)
+    const users = document.getElementById("listaUsuarios")
+    users.replaceChildren() //comentarear esta linea si va a enlistar de manera aleatoria
+    fetch('https://jsonplaceholder.typicode.com/users').then((Response) => Response.json()).then(data => {
+        // usuario = document.createElement("li")
+        // ñame = document.createElement("div")
+        // email = document.createElement("div")
+        // usuario.className = "bg-[#2e97bd] flex justify-between p-2 rounded-lg "
+        // ñame.innerText = data[num].name
+        // email.innerText = data[num].email
+        // usuario.appendChild(ñame)
+        // usuario.appendChild(email)
+        // users.appendChild(usuario)
+        const filtro = data.filter(filtraje)
+        for(const persona of filtro){
+            const usuario = document.createElement("li")
+            const ñame = document.createElement("div")
+            const email = document.createElement("div")
+            usuario.className = "bg-[#2e97bd] flex justify-between p-2 rounded-lg "
+            ñame.innerText = persona.name
+            email.innerText = persona.email
+            usuario.appendChild(ñame)
+            usuario.appendChild(email)
+            users.appendChild(usuario)
+        }
+    });
+})
+
+// 🟢 DESAFÍO 5 (Extra): Guardar y cargar la lista de tareas usando localStorage
+window.addEventListener("DOMContentLoaded", function () {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        crearTarea(key, value);
+        if (+key >= tareaId) {
+            tareaId = +key + 1;
+        }
+    }
+})
+

@@ -37,7 +37,7 @@ void solve(){
 
 int main(){
     Sonic
-    // tests(t)
+    tests(t)
         solve();
     return 0;
 }
