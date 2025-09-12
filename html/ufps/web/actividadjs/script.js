@@ -1,7 +1,7 @@
 // 🟢 DESAFÍO 1: Cambiar el texto de un párrafo al hacer clic en el botón
 document.getElementById("btnTexto").addEventListener("click", function () {
     const btn = document.getElementById("texto")
-    btn.innerText = "¡Texto cambiado!"
+    btn.innerText = btn.innerText === "Este texto debe cambiar." ? "¡Texto cambiado!" : "Este texto debe cambiar."
 });
 
 // 🟢 DESAFÍO 2: Alternar el color de fondo de la página al hacer clic
@@ -9,7 +9,6 @@ document.getElementById("btnColor").addEventListener("click", function () {
     const body = document.querySelector("body")
     body.classList.toggle("bg-gray-100")
     body.classList.toggle("bg-[#00afc7]")
-    //body.style.background = "#350080ff"
 });
 
 // 🟢 DESAFÍO 3: Agregar tareas dinámicamente a la lista
@@ -35,13 +34,11 @@ function crearTarea(id, contenido){
         item.remove()
         localStorage.removeItem(myId)
     })
-
     item.innerText = contenido
     item.className = "bg-violet-400 px-5 py-1 flex justify-between items-center rounded-full"
     item.appendChild(btn)
     list.appendChild(item)
 }
-
 
 // 🟢 DESAFÍO 4: Cargar datos de usuarios desde una API pública
 //Lo que está comentado es el encargado de listar de manera aleatoria
@@ -49,26 +46,17 @@ function crearTarea(id, contenido){
 
 // 🟢 DESAFÍO 6 (Extra): Filtrar usuarios con correos que contengan "biz"
 //funcion para filtrar
-function filtraje(persona){
-    let size = persona.email.length
-    return persona.email[size-1] == "z" && persona.email[size-2] == "i" && persona.email[size-3] == "b"
-}
+
+let filtrar = true
 document.getElementById("btnUsuarios").addEventListener("click", function () {
-    // let num = Math.floor(Math.random() *10)
     const users = document.getElementById("listaUsuarios")
+    filtrar = !filtrar
     users.replaceChildren() //comentarear esta linea si va a enlistar de manera aleatoria
     fetch('https://jsonplaceholder.typicode.com/users').then((Response) => Response.json()).then(data => {
-        // usuario = document.createElement("li")
-        // ñame = document.createElement("div")
-        // email = document.createElement("div")
-        // usuario.className = "bg-[#2e97bd] flex justify-between p-2 rounded-lg "
-        // ñame.innerText = data[num].name
-        // email.innerText = data[num].email
-        // usuario.appendChild(ñame)
-        // usuario.appendChild(email)
-        // users.appendChild(usuario)
-        const filtro = data.filter(filtraje)
-        for(const persona of filtro){
+        
+        //Desafio 4 y 6, alternando cada vez que se preciosa el botón
+        if(filtrar) data = data.filter(persona => persona.email.includes("biz"))
+        for(const persona of data){
             const usuario = document.createElement("li")
             const ñame = document.createElement("div")
             const email = document.createElement("div")
