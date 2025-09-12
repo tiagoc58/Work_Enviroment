@@ -5,7 +5,7 @@ using namespace std;
 #define F first
 #define S second
 #define pb push_back
-#define ln cout<<endl
+#define ln cout<<endl;
 #define sz(x) int((x).size())
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
@@ -17,7 +17,7 @@ using namespace std;
 #define print(x) for(auto &el : x) {cout << el << " ";} cout<<endl;
 #define lw(c, x) int(lower_bound((c).begin(), (c).end(), (x)) - (c).begin())
 #define up(c, x) int(upper_bound((c).begin(), (c).end(), (x)) - (c).begin())
-#define sino(b) cout<<(b ? "YES\n":"NO\n")
+#define sino(b) cout<<(b ? "YES\n":"NO\n");
 #define syso(x) cout<< x <<endl;
 #define vec(a) vector<a>
 #define pr(a,b) pair<a,b>
@@ -31,13 +31,26 @@ typedef pair<ll,ll> pll;
 ll gcd(ll a, ll b){while(b){a%=b; swap(a,b);} return a;} ll lcm(ll a,ll b){return a*b/gcd(a,b);}
 int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {return 63-__builtin_clzll(x);}
 
+const int MX = 1e5+5;
+vec(vi) dp(MX, vector<int>(MX,-1));
+vi x(MX), h(MX);
+int n;
+
+int f(int i, int w){
+    if(i == n) return 0;
+    int &ans = dp[i][w];
+    if(ans !=- 1) return ans;
+}
+
 void solve(){
-    
+    cin >> n;
+    forn(i,n) cin >> x[i] >> h[i];
+    // syso(f(0),1);
 }
 
 int main(){
     Sonic
-    tests(t)
+    // tests(t)
         solve();
     return 0;
 }
