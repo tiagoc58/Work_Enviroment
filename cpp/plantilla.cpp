@@ -10,6 +10,7 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define read(x) for(auto &el : x) cin >> el;
+#define reads(s, n) for(int i = 0, x; i < n; ++i) {cin >> x; s.insert(x);}
 #define forn(i,n) for(int i=0; i < int(n); ++i)
 #define forsn(i, s, n) for (int i = s; i < n; ++i)
 #define dforn(i, n) for (int i = n - 1; i >= 0; --i)
@@ -31,26 +32,26 @@ typedef pair<ll,ll> pll;
 ll gcd(ll a, ll b){while(b){a%=b; swap(a,b);} return a;} ll lcm(ll a,ll b){return a*b/gcd(a,b);}
 int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {return 63-__builtin_clzll(x);}
 
-const int MX = 1e5+5;
-vec(vi) dp(MX, vector<int>(MX,-1));
-vi x(MX), h(MX);
-int n;
-
-int f(int i, int w){
-    if(i == n) return 0;
-    int &ans = dp[i][w];
-    if(ans !=- 1) return ans;
-}
-
 void solve(){
-    cin >> n;
-    forn(i,n) cin >> x[i] >> h[i];
-    // syso(f(0),1);
+    int n; cin >> n;
+    ll sum = 0;
+    vi imp;
+    for(int i = 0, x; i < n; ++i){
+        cin >> x;
+        if(x&1) imp.pb(x);
+        else sum += x;
+    }
+    sort(all(imp));
+    int j = sz(imp)-1, ok = 1;
+    while(sz(imp)/2<=j){
+        if(ok++&1) sum+=imp[j--];
+    }
+    syso(sum*(sz(imp)>0))
 }
 
 int main(){
     Sonic
-    // tests(t)
+    tests(t)
         solve();
     return 0;
 }
