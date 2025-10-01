@@ -31,22 +31,14 @@ typedef pair<int,pii> piii;
 typedef pair<ll,ll> pll;
 ll gcd(ll a, ll b){while(b){a%=b; swap(a,b);} return a;} ll lcm(ll a,ll b){return a*b/gcd(a,b);}
 int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {return 63-__builtin_clzll(x);}
+/*
+    Para leer e imprimir .txt
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);    
+*/
 
 void solve(){
-    int n; cin >> n;
-    ll sum = 0;
-    vi imp;
-    for(int i = 0, x; i < n; ++i){
-        cin >> x;
-        if(x&1) imp.pb(x);
-        else sum += x;
-    }
-    sort(all(imp));
-    int j = sz(imp)-1, ok = 1;
-    while(sz(imp)/2<=j){
-        if(ok++&1) sum+=imp[j--];
-    }
-    syso(sum*(sz(imp)>0))
+    
 }
 
 int main(){
