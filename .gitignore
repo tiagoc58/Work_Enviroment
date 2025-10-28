@@ -1,8 +1,9 @@
 # Carpetas de configuración de VS Code
 .vscode/
 
-#Cualquier archivo de prueba
+#Cualquier archivo y directorio de prueba
 prueba.*
+prueba/
 
 # Archivos de compilación/salida en C++
 *.exe
