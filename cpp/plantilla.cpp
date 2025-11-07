@@ -36,7 +36,15 @@ int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {re
 // freopen("output.txt", "w", stdout);    
 
 void solve(){
-    
+    int l = 1, r = 1e6;
+    while(l <= r){
+        int m = (l+r)/2;
+        syso(m)
+        string s; cin >> s;
+        if(s == "<") r = m-1;
+        else l = m+1;
+    }
+    cout << "! " << r << endl;
 }
 
 int main(){
