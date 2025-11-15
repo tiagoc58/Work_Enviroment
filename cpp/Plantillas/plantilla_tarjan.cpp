@@ -70,6 +70,7 @@ void init(){
   cnt = SCC = 0;
   for(int i = 0; i <= n; ++i){
     sccInd[i] = vis[i] = -1;
+    g[i].clear();
   }
 }
 
