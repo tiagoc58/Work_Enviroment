@@ -18,7 +18,7 @@ export function Menu() {
 }
 
 export function BuscadorPokemon({ nombre }) {
-  if(nombre.trim() === "") return 
+  if(nombre.trim() === "") return null;
   const [pokemon, setPokemon] = useState(null); 
   const [error, setError] = useState(null);
 
