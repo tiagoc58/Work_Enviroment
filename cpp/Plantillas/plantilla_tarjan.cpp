@@ -35,10 +35,11 @@ int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {re
 const int MX = 1e6+5;
 const int oo = 1e9;
 vi g[MX];
-vector<set<int>> g2;
-vector<bool> vis2;
 vi vis(MX), sccInd(MX), cmp(MX);
 stack<int> pila;
+//para el dag
+vector<set<int>> g2;
+vector<bool> vis2;
 int n, m, cnt, SCC, ans;
 
 void tarjan(int u){
