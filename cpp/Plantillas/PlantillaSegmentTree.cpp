@@ -34,7 +34,7 @@ int lg2(const int &x) { return 31-__builtin_clz(x);}
 typedef int T; // tipo de dato del segtree
 struct segtree {
     vector<T> st; // , lazy;
-    int n; T neutro = -1; // "infinito"
+    int n; T neutro = 1e9; // "infinito"
 
     segtree(const vector<int> &v) {
         n = v.size();
@@ -49,7 +49,7 @@ struct segtree {
             int m = (L+R)/2, l = p*2, r = l+1;
             build(l, L, m, v);
             build(r, m+1, R, v);
-            st[p] = (st[l] == st[r] ? st[l] : 0);
+            st[p] = min(st[l], st[r]);
         }
     }
     /*
@@ -66,14 +66,13 @@ struct segtree {
     void upd(int i, int j, T val) { upd(1, 0, n-1, i, j, val); }
 
     T query(int p, int L, int R, int i, int j) {
+        // propagate(p, L, R, lazy[p]);
         if (i > R || j < L) return neutro;
         if (i <= L && j >= R) return st[p];
         int m = (L+R)/2, l = p*2, r = l+1;
         T lf = query(l, L, m, i, j);
         T rg = query(r, m+1, R, i, j);
-        if(lf == -1) return rg;
-        if(rg == -1) return lf;
-        return (lf == rg ? lf : 0);
+        return min(lf, rg);
     }
 
     void upd(int p, int L, int R, int i, int j, T val) {
