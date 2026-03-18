@@ -35,66 +35,58 @@ int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {re
 // freopen("input.txt", "r", stdin);
 // freopen("output.txt", "w", stdout);  
 
-const int N = 2005;
-vector<vi> g(N);
-vector<bool> vis;
-vector<char> ans(N);
-int n;
-string s;
+const int alpha = 26; // cantidad de letras del lenguaje
+const char L = 'a'; // primera letra del lenguaje
 
 struct node {
-  int next[16], end = 0;
+  int next[alpha], end = 0;
   int& operator [] (int i) { return next[i]; }
 };
 
-int val(char c){
-  if('0' <= c && c <= '9') return c-'0';
-  else return c -'a'+10;
-}
-
 vector<node> trie = {node()};
 
-void add_str(int m){
+void add_str(string &s, int id = 1) {
   int u = 0;
-  for(int i = 1; i <= m; ++i){
-    if(!trie[u][ans[i]]){
-      trie[u][ans[i]] = sz(trie);
-      trie.pb(node());
+  for (auto ch : s) {
+    int c = ch-L;
+    if (!trie[u][c]) {
+        trie[u][c] = trie.size();
+        trie.pb(node());
     }
-    u = trie[u][ans[i]];
+    u = trie[u][c];
   }
+  trie[u].end = id; // con id > 0
 }
 
-void dfs(int u, int p){
-  vis[u] = true;
-  ans[p] = val(s[u]);
-  int fl = 1;
-  for(auto &v : g[u]) if(!vis[v]) {
-    dfs(v,p+1);
-    fl = 0;
+bool search(string &s){
+  int u = 0;
+  for (auto ch : s) {
+    int c = ch-L;
+    if (!trie[u][c]) return false;
+    u = trie[u][c];
   }
-  if(fl) add_str(p);
+  return trie[u].end;
+}
+
+bool starts_with(string &pref){
+  int u = 0;
+  for (auto ch : pref) {
+    int c = ch-L;
+    if (!trie[u][c]) return false;
+    u = trie[u][c];
+  }
+  return true;
 }
 
 void solve(){
-  cin >> n >> s;
-  forn(i,n-1){
-    int u,v; cin >> u >> v; u--; v--;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
-  forn(i,n){
-    vis.assign(n,false);
-    dfs(i,1);
-  }
-  syso(sz(trie)-1)
+  
 }
 
 
 int main(){
   Sonic
-  // tests(t)
+  tests(t)
     solve();
   return 0;
 }
-//"Con una sola no... con varias." - Sebatian Peñaranda 2026
+//Chebitas + Sarita <3 (mis papis)

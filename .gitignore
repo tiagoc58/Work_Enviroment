@@ -9,7 +9,7 @@ prueba/
 *.exe
 *.out
 *.o
-cpp/output/
+*output/
 
 # Archivos de Python cache
 __pycache__/
