@@ -5,6 +5,7 @@ using namespace std;
 #define F first
 #define S second
 #define pb push_back
+#define eb emplace_back
 #define ln cout<<endl;
 #define sz(x) int((x).size())
 #define all(x) (x).begin(), (x).end()
@@ -20,8 +21,6 @@ using namespace std;
 #define up(c, x) int(upper_bound((c).begin(), (c).end(), (x)) - (c).begin())
 #define sino(b) cout<<(b ? "YES\n":"NO\n");
 #define syso(x) cout<< (x) <<endl;
-#define vec(a) vector<a>
-#define pr(a,b) pair<a,b>
 typedef long long ll;
 typedef long double ld;
 typedef vector<int> vi;
@@ -33,68 +32,64 @@ ll gcd(ll a, ll b){while(b){a%=b; swap(a,b);} return a;} ll lcm(ll a,ll b){retur
 int lg2(const int &x) { return 31-__builtin_clz(x);} // int lg2(const ll &x) {return 63-__builtin_clzll(x);}
 // Para leer e imprimir .txt
 // freopen("input.txt", "r", stdin);
-// freopen("output.txt", "w", stdout);  
+// freopen("output.txt", "w", stdout); 
 
-const int N = 2005;
-vector<vi> g(N);
-vector<bool> vis;
-vector<char> ans(N);
-int n;
-string s;
-
-struct node {
-  int next[16], end = 0;
-  int& operator [] (int i) { return next[i]; }
-};
-
-int val(char c){
-  if('0' <= c && c <= '9') return c-'0';
-  else return c -'a'+10;
-}
-
-vector<node> trie = {node()};
-
-void add_str(int m){
-  int u = 0;
-  for(int i = 1; i <= m; ++i){
-    if(!trie[u][ans[i]]){
-      trie[u][ans[i]] = sz(trie);
-      trie.pb(node());
+//metodo para multiplicar un string por un valor x, este siempre será menor que 10
+string mul(string &b, int x){
+    string tmp = "";
+    int exc = 0;
+    for(int i = sz(b)-1; i >= 0; --i){
+        int d = b[i]-'0', mul = d*x + exc;
+        tmp += to_string(mul%10);
+        exc = mul/10; 
     }
-    u = trie[u][ans[i]];
-  }
+    if(exc) tmp += to_string(exc);
+    reverse(all(tmp));
+    return tmp;
 }
 
-void dfs(int u, int p){
-  vis[u] = true;
-  ans[p] = val(s[u]);
-  int fl = 1;
-  for(auto &v : g[u]) if(!vis[v]) {
-    dfs(v,p+1);
-    fl = 0;
-  }
-  if(fl) add_str(p);
+//metodo para restar strings
+string res(string a, string b){
+    int j = sz(a)-1;
+    bool lleva = 0;
+    for(int i = sz(b)-1; i >= 0; --i){
+        int x = a[j]-'0', y = b[i]-'0';
+        if(lleva) x--, lleva = 0;
+        if(x < y) x+=10, lleva = 1;
+        x-=y;
+        a[j] = x + '0';
+        j--;
+    }
+    if(lleva) a[j]--;
+    return a;
+}
+
+//metodo para saber si string b es mayor que string a lexicograficamente
+int cmp_sz(string a, string &b){
+    int i = 0, j = 0;
+    while(a[i] != 0 && ) i++;
+    for(int i = 0; i < sz(a); ++i) if(a[i] != b[i]) return a[i] > b[i] ? -1 : 1;
+    return 0;
 }
 
 void solve(){
-  cin >> n >> s;
-  forn(i,n-1){
-    int u,v; cin >> u >> v; u--; v--;
-    g[u].pb(v);
-    g[v].pb(u);
-  }
-  forn(i,n){
-    vis.assign(n,false);
-    dfs(i,1);
-  }
-  syso(sz(trie)-1)
+    string dvn, dvs; cin >> dvn >> dvs;
+    if(sz(dvs) > sz(dvn)) syso("NO");
+    string tmp = "";
+    for(int i = 0; i < sz(dvn); ++i){
+        if(sz(tmp) < sz(dvs) || (sz(tmp) == sz(dvs) && cmp_sz(tmp,dvs) == 1)) tmp += to_string(dvn[i]);
+        else{
+            int x = 2;
+            while(cmp_sz(mul(dvs,x), tmp) != -1) x++;
+            tmp = res(tmp,mul(dvs,x-1));
+        }
+    }
 }
-
 
 int main(){
-  Sonic
-  // tests(t)
-    solve();
-  return 0;
+    Sonic  
+    // tests(t)
+        solve();
+    return 0;
 }
-//"Con una sola no... con varias." - Sebatian Peñaranda 2026
+//"Quiero picha" - Sebastian Nieto 2026
